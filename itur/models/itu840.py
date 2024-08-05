@@ -61,7 +61,7 @@ class __ITU840__():
     # This is an abstract class that contains an instance to a version of the
     # ITU-R P.840 recommendation.
 
-    def __init__(self, version=7):
+    def __init__(self, version=8):
         if version == 8:
             self.instance = _ITU840_8_()
         elif version == 7:
