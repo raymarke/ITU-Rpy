@@ -110,7 +110,7 @@ class _ITU840_8_():
 
     def __init__(self):
         self.__version__ = 8
-        self.year = 2019
+        self.year = 2023
         self.month = 8
         self.link = 'https://www.itu.int/rec/R-REC-P.840-8-201908-I/en'
 
