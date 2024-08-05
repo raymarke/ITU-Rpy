@@ -1,0 +1,336 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "R840-9\n",
+      "First few rows of the DataFrame:\n",
+      "   0     1     2     3     4     5     6     7     8     9     ...  1431  \\\n",
+      "0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0  ...   0.0   \n",
+      "1   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0  ...   0.0   \n",
+      "2   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0  ...   0.0   \n",
+      "3   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0  ...   0.0   \n",
+      "4   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0  ...   0.0   \n",
+      "\n",
+      "   1432  1433  1434  1435  1436  1437  1438  1439  1440  \n",
+      "0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0  \n",
+      "1   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0  \n",
+      "2   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0  \n",
+      "3   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0  \n",
+      "4   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0   0.0  \n",
+      "\n",
+      "[5 rows x 1441 columns]\n",
+      "\n",
+      "\n",
+      "DataFrame Information:\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 721 entries, 0 to 720\n",
+      "Columns: 1441 entries, 0 to 1440\n",
+      "dtypes: float64(1441)\n",
+      "memory usage: 7.9 MB\n",
+      "\n",
+      "\n",
+      "DataFrame Statistics:\n",
+      "        0      1      2      3      4      5      6      7      8      9     \\\n",
+      "count  721.0  721.0  721.0  721.0  721.0  721.0  721.0  721.0  721.0  721.0   \n",
+      "mean     0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0   \n",
+      "std      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0   \n",
+      "min      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0   \n",
+      "25%      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0   \n",
+      "50%      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0   \n",
+      "75%      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0   \n",
+      "max      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0   \n",
+      "\n",
+      "       ...   1431   1432        1433        1434   1435   1436   1437   1438  \\\n",
+      "count  ...  721.0  721.0  721.000000  721.000000  721.0  721.0  721.0  721.0   \n",
+      "mean   ...    0.0    0.0    0.000036    0.000032    0.0    0.0    0.0    0.0   \n",
+      "std    ...    0.0    0.0    0.000686    0.000606    0.0    0.0    0.0    0.0   \n",
+      "min    ...    0.0    0.0    0.000000    0.000000    0.0    0.0    0.0    0.0   \n",
+      "25%    ...    0.0    0.0    0.000000    0.000000    0.0    0.0    0.0    0.0   \n",
+      "50%    ...    0.0    0.0    0.000000    0.000000    0.0    0.0    0.0    0.0   \n",
+      "75%    ...    0.0    0.0    0.000000    0.000000    0.0    0.0    0.0    0.0   \n",
+      "max    ...    0.0    0.0    0.014000    0.012000    0.0    0.0    0.0    0.0   \n",
+      "\n",
+      "        1439   1440  \n",
+      "count  721.0  721.0  \n",
+      "mean     0.0    0.0  \n",
+      "std      0.0    0.0  \n",
+      "min      0.0    0.0  \n",
+      "25%      0.0    0.0  \n",
+      "50%      0.0    0.0  \n",
+      "75%      0.0    0.0  \n",
+      "max      0.0    0.0  \n",
+      "\n",
+      "[8 rows x 1441 columns]\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "\n",
+    "def display_txt_file_info(file_path):\n",
+    "    # Read the .txt file into a pandas DataFrame\n",
+    "    try:\n",
+    "        # df = pd.read_csv(file_path, delimiter='\\t', header=None)  # Adjust the delimiter if needed (e.g., ',' for CSV)\n",
+    "        df = pd.read_csv(file_path, delimiter=' ', lineterminator='\\n', header=None)  # Adjust the delimiter if needed (e.g., ',' for CSV)\n",
+    "        \n",
+    "        # Display the first few rows of the DataFrame\n",
+    "        print(\"First few rows of the DataFrame:\")\n",
+    "        print(df.head())\n",
+    "        print(\"\\n\")\n",
+    "        \n",
+    "        # Display basic information about the DataFrame\n",
+    "        print(\"DataFrame Information:\")\n",
+    "        df.info()\n",
+    "        print(\"\\n\")\n",
+    "        \n",
+    "        # Display basic statistics about the DataFrame\n",
+    "        print(\"DataFrame Statistics:\")\n",
+    "        print(df.describe())\n",
+    "        return df\n",
+    "    except Exception as e:\n",
+    "        print(f\"An error occurred: {e}\")\n",
+    "    \n",
+    "if __name__ == \"__main__\":\n",
+    "    # Replace 'your_file.txt' with the path to your actual .txt file\n",
+    "    # file_path = \"C:\\\\Users\\\\rayma\\\\Downloads\\\\ITUR 840-9\\\\R-REC-P.840-8-201908-S!!ZIP-E\\\\P_840_Maps_annual\\\\Lred Annual Maps\\\\Lred_95_v4.txt\"\n",
+    "    # print('R840-8')\n",
+    "    # df_8 = display_txt_file_info(file_path)\n",
+    "    file_path = \"C:\\\\Users\\\\rayma\\\\Downloads\\\\ITUR 840-9\\\\R-REC-P.840Part01-0-202308-I!!ZIP-E\\\\L_95.TXT\"\n",
+    "    print('R840-9')\n",
+    "    df_9 = display_txt_file_info(file_path)\n",
+    "    df_9.shape\n",
+    "    df_9.to_excel('R840-9.xlsx')\n",
+    "    \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(722, 1441)"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df_9.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "R840-8\n",
+      "First few rows of the DataFrame:\n",
+      "   0    1    2    3    4    5    6    7    8    9    ...  311  312  313  314  \\\n",
+      "0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   \n",
+      "1  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  ...  NaN  NaN  NaN  NaN   \n",
+      "2  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   \n",
+      "3  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   \n",
+      "4  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0  ...  0.0  0.0  0.0  0.0   \n",
+      "\n",
+      "   315  316  317  318  319  320  \n",
+      "0  0.0  0.0  0.0  0.0  0.0  0.0  \n",
+      "1  NaN  NaN  NaN  NaN  NaN  0.0  \n",
+      "2  0.0  0.0  0.0  0.0  0.0  0.0  \n",
+      "3  0.0  0.0  0.0  0.0  0.0  0.0  \n",
+      "4  0.0  0.0  0.0  0.0  0.0  0.0  \n",
+      "\n",
+      "[5 rows x 321 columns]\n",
+      "\n",
+      "\n",
+      "DataFrame Information:\n",
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 161 entries, 0 to 160\n",
+      "Columns: 321 entries, 0 to 320\n",
+      "dtypes: float64(321)\n",
+      "memory usage: 403.9 KB\n",
+      "\n",
+      "\n",
+      "DataFrame Statistics:\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "C:\\Users\\rayma\\AppData\\Local\\Temp\\ipykernel_28180\\3216204397.py:8: FutureWarning: The 'delim_whitespace' keyword in pd.read_csv is deprecated and will be removed in a future version. Use ``sep='\\s+'`` instead\n",
+      "  df = pd.read_csv(file_path,delim_whitespace=True, lineterminator = '\\n', header = None)\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "         0      1             2      3             4             5    \\\n",
+      "count  161.0  161.0  1.610000e+02  161.0  1.610000e+02  1.610000e+02   \n",
+      "mean     0.0    0.0  3.934991e-08    0.0  3.742228e-07  3.326402e-09   \n",
+      "std      0.0    0.0  4.992944e-07    0.0  3.525467e-06  3.885506e-08   \n",
+      "min      0.0    0.0  0.000000e+00    0.0  0.000000e+00  0.000000e+00   \n",
+      "25%      0.0    0.0  0.000000e+00    0.0  0.000000e+00  0.000000e+00   \n",
+      "50%      0.0    0.0  0.000000e+00    0.0  0.000000e+00  0.000000e+00   \n",
+      "75%      0.0    0.0  0.000000e+00    0.0  0.000000e+00  0.000000e+00   \n",
+      "max      0.0    0.0  6.335336e-06    0.0  4.174342e-05  4.913024e-07   \n",
+      "\n",
+      "              6             7           8           9    ...    311    312  \\\n",
+      "count  161.000000  1.610000e+02  161.000000  161.000000  ...  160.0  160.0   \n",
+      "mean     0.000003  1.126393e-08    0.000002    0.000046  ...    0.0    0.0   \n",
+      "std      0.000022  1.429233e-07    0.000024    0.000298  ...    0.0    0.0   \n",
+      "min      0.000000  0.000000e+00    0.000000    0.000000  ...    0.0    0.0   \n",
+      "25%      0.000000  0.000000e+00    0.000000    0.000000  ...    0.0    0.0   \n",
+      "50%      0.000000  0.000000e+00    0.000000    0.000000  ...    0.0    0.0   \n",
+      "75%      0.000000  0.000000e+00    0.000000    0.000000  ...    0.0    0.0   \n",
+      "max      0.000210  1.813493e-06    0.000305    0.002294  ...    0.0    0.0   \n",
+      "\n",
+      "         313    314    315    316    317    318    319    320  \n",
+      "count  160.0  160.0  160.0  160.0  160.0  160.0  160.0  161.0  \n",
+      "mean     0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0  \n",
+      "std      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0  \n",
+      "min      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0  \n",
+      "25%      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0  \n",
+      "50%      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0  \n",
+      "75%      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0  \n",
+      "max      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0  \n",
+      "\n",
+      "[8 rows x 321 columns]\n",
+      "(161, 321)\n"
+     ]
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "\n",
+    "def display_txt_file_info(file_path):\n",
+    "    # Read the .txt file into a pandas DataFrame\n",
+    "    try:\n",
+    "        # df = pd.read_csv(file_path, delimiter='\\t', header=None)  # Adjust the delimiter if needed (e.g., ',' for CSV)\n",
+    "        # df = pd.read_csv(file_path, delimiter=' ', lineterminator='\\n')  # Adjust the delimiter if needed (e.g., ',' for CSV)\n",
+    "        df = pd.read_csv(file_path,delim_whitespace=True, lineterminator = '\\n', header = None)\n",
+    "        # Display the first few rows of the DataFrame\n",
+    "        print(\"First few rows of the DataFrame:\")\n",
+    "        print(df.head())\n",
+    "        print(\"\\n\")\n",
+    "        \n",
+    "        # Display basic information about the DataFrame\n",
+    "        print(\"DataFrame Information:\")\n",
+    "        df.info()\n",
+    "        print(\"\\n\")\n",
+    "        \n",
+    "        # Display basic statistics about the DataFrame\n",
+    "        print(\"DataFrame Statistics:\")\n",
+    "        print(df.describe())\n",
+    "        return df\n",
+    "    except Exception as e:\n",
+    "        print(f\"An error occurred: {e}\")\n",
+    "    \n",
+    "if __name__ == \"__main__\":\n",
+    "    # Replace 'your_file.txt' with the path to your actual .txt file\n",
+    "    file_path = \"C:\\\\Users\\\\rayma\\\\Downloads\\\\ITUR 840-9\\\\R-REC-P.840-8-201908-S!!ZIP-E\\\\P_840_Maps_annual\\\\Lred Annual Maps\\\\Lred_95_v4.txt\"\n",
+    "    print('R840-8')\n",
+    "    df_8 = display_txt_file_info(file_path)\n",
+    "    df_8.to_excel('R840-8.xlsx', index=False, engine='openpyxl')\n",
+    "    print(df_8.shape)\n",
+    "\n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "ValueError",
+     "evalue": "operands could not be broadcast together with shapes (0,) (1440,) ",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mValueError\u001b[0m                                Traceback (most recent call last)",
+      "Cell \u001b[1;32mIn[35], line 6\u001b[0m\n\u001b[0;32m      4\u001b[0m lon_space \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mint\u001b[39m(\u001b[38;5;241m360\u001b[39m\u001b[38;5;241m/\u001b[39m\u001b[38;5;241m0.25\u001b[39m)\n\u001b[0;32m      5\u001b[0m headerline \u001b[38;5;241m=\u001b[39m np\u001b[38;5;241m.\u001b[39mlinspace(\u001b[38;5;241m-\u001b[39m\u001b[38;5;241m90\u001b[39m,\u001b[38;5;241m90\u001b[39m,lat_space)\n\u001b[1;32m----> 6\u001b[0m firstrow \u001b[38;5;241m=\u001b[39m [] \u001b[38;5;241m+\u001b[39m np\u001b[38;5;241m.\u001b[39mlinspace(\u001b[38;5;241m-\u001b[39m\u001b[38;5;241m180\u001b[39m, \u001b[38;5;241m180\u001b[39m, lon_space)\n\u001b[0;32m      7\u001b[0m \u001b[38;5;28mprint\u001b[39m(firstrow)\n",
+      "\u001b[1;31mValueError\u001b[0m: operands could not be broadcast together with shapes (0,) (1440,) "
+     ]
+    }
+   ],
+   "source": [
+    "import numpy as np\n",
+    "resolution = 0.25\n",
+    "lat_space = int(180/0.25)\n",
+    "lon_space = int(360/0.25)\n",
+    "headerline = np.linspace(-90,90,lat_space)\n",
+    "firstrow = np.linspace(-180, 180, lon_space)\n",
+    "print(firstrow)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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FgAAjC0jtocFAACMHQQWAABgewQWAABgewQWAABgeyMysDzzzDPKzs7WuHHjlJ+fr7feemu4q3RelJeX69prr1VKSoomTZqkW265RR9++GFEGWOM1q5dK6/Xq6SkJM2cOVMHDx6MKBMMBlVaWqqMjAwlJydr7ty5amxsHMpTOW/Ky8utTwoPG4tt8umnn+quu+5Senq6xo8fr6uuukp1dXXW9rHWJl999ZX+6Z/+SdnZ2UpKStK0adP0+OOP6+TJk1aZ0d4mv/3tb3XzzTfL6/XK4XDo1Vdfjdgeq/NvaWnRwoUL5XK55HK5tHDhQh07duw8n130ztQenZ2dWr16tfLy8pScnCyv16u7775bR48ejTjGaGoP6ey/Iz0tWbJEDodDTz31VMT6IW0TM8JUVFSYhIQE89xzz5lDhw6Zhx9+2CQnJ5vDhw8Pd9Vibs6cOWbLli3mwIEDZt++feamm24yU6ZMMcePH7fKPPnkkyYlJcX84he/MPv37zfz5883F154oWltbbXK3H///eaiiy4yVVVVZu/eveZb3/qWufLKK81XX301HKcVM3v27DEXX3yxueKKK8zDDz9srR9rbfLnP//ZTJ061dxzzz3m3XffNfX19WbXrl3mj3/8o1VmrLXJE088YdLT08327dtNfX29+c///E/zta99zTz11FNWmdHeJjt27DCPPfaY+cUvfmEkmcrKyojtsTr/73znOyY3N9fU1NSYmpoak5uba0pKSobqNM/Zmdrj2LFjpqioyLz00kvmD3/4g3n77bdNQUGByc/PjzjGaGoPY87+OxJWWVlprrzySuP1es3GjRsjtg1lm4y4wPLXf/3X5v77749Yd8kll5hHH310mGo0dJqbm40kU11dbYwx5uTJk8bj8Zgnn3zSKnPixAnjcrnMT3/6U2NM6A8xISHBVFRUWGU+/fRTc8EFF5jXX399aE8ghtra2kxOTo6pqqoyM2bMsALLWGyT1atXmxtuuOG028dim9x0003mvvvui1j33e9+19x1113GmLHXJr3/GcXq/A8dOmQkmXfeeccq8/bbbxtJ5g9/+MN5PquBO9M/57A9e/YYSdab4dHcHsacvk0aGxvNRRddZA4cOGCmTp0aEViGuk1G1CWhjo4O1dXVqbi4OGJ9cXGxampqhqlWQycQCEiS0tLSJEn19fXy+/0R7eF0OjVjxgyrPerq6tTZ2RlRxuv1Kjc3d0S32YMPPqibbrpJRUVFEevHYpu89tprmj59um677TZNmjRJV199tZ577jlr+1hskxtuuEH/8z//o48++kiS9Lvf/U67d+/W3/7t30oam23SU6zO/+2335bL5VJBQYFV5hvf+IZcLteIb6NAICCHw6EJEyZIGpvtcfLkSS1cuFCPPPKILr/88j7bh7pNRtSHH37++efq6uqS2+2OWO92u+X3+4epVkPDGKPly5frhhtuUG5uriRZ59xfexw+fNgqk5iYqIkTJ/YpM1LbrKKiQnv37lVtbW2fbWOxTT755BNt3rxZy5cv1/e//33t2bNHDz30kJxOp+6+++4x2SarV69WIBDQJZdcori4OHV1delHP/qR7rjjDklj8/ekp1idv9/v16RJk/ocf9KkSSO6jU6cOKFHH31UCxYssD7Ybyy2x7p16xQfH6+HHnqo3+1D3SYjKrCEORyOiOfGmD7rRptly5bpgw8+0O7du/tsG0h7jNQ2a2ho0MMPP6ydO3dq3Lhxpy03ltrk5MmTmj59usrKyiRJV199tQ4ePKjNmzfr7rvvtsqNpTZ56aWX9MILL+jFF1/U5Zdfrn379snn88nr9WrRokVWubHUJv2Jxfn3V34kt1FnZ6duv/12nTx5Us8888xZy4/W9qirq9NPfvIT7d27N+q6n682GVGXhDIyMhQXF9cnlTU3N/d5pzCalJaW6rXXXtObb76pyZMnW+s9Ho8knbE9PB6POjo61NLSctoyI0ldXZ2am5uVn5+v+Ph4xcfHq7q6Wk8//bTi4+OtcxpLbXLhhRfqsssui1h36aWX6siRI5LG5u/JI488okcffVS333678vLytHDhQn3ve99TeXm5pLHZJj3F6vw9Ho/+9Kc/9Tn+Z599NiLbqLOzU/PmzVN9fb2qqqqs3hVp7LXHW2+9pebmZk2ZMsV6rT18+LBWrFihiy++WNLQt8mICiyJiYnKz89XVVVVxPqqqioVFhYOU63OH2OMli1bpldeeUW//vWvlZ2dHbE9OztbHo8noj06OjpUXV1ttUd+fr4SEhIiyjQ1NenAgQMjss1mzZql/fv3a9++fdYyffp03Xnnndq3b5+mTZs25trk+uuv73O7+0cffaSpU6dKGpu/J3/5y190wQWRL29xcXHWbc1jsU16itX5X3fddQoEAtqzZ49V5t1331UgEBhxbRQOKx9//LF27dql9PT0iO1jrT0WLlyoDz74IOK11uv16pFHHtEbb7whaRjaJKohujYQvq35+eefN4cOHTI+n88kJyeb//u//xvuqsXcAw88YFwul/nNb35jmpqarOUvf/mLVebJJ580LpfLvPLKK2b//v3mjjvu6PfWxMmTJ5tdu3aZvXv3mm9/+9sj5tbMc9HzLiFjxl6b7Nmzx8THx5sf/ehH5uOPPzb/8R//YcaPH29eeOEFq8xYa5NFixaZiy66yLqt+ZVXXjEZGRlm1apVVpnR3iZtbW3m/fffN++//76RZDZs2GDef/99666XWJ3/d77zHXPFFVeYt99+27z99tsmLy/Plrfxnqk9Ojs7zdy5c83kyZPNvn37Il5vg8GgdYzR1B7GnP13pLfedwkZM7RtMuICizHG/Nu//ZuZOnWqSUxMNNdcc411m+9oI6nfZcuWLVaZkydPmh/84AfG4/EYp9NpvvnNb5r9+/dHHKe9vd0sW7bMpKWlmaSkJFNSUmKOHDkyxGdz/vQOLGOxTf77v//b5ObmGqfTaS655BLz7LPPRmwfa23S2tpqHn74YTNlyhQzbtw4M23aNPPYY49F/PMZ7W3y5ptv9vv6sWjRImNM7M7/iy++MHfeeadJSUkxKSkp5s477zQtLS1DdJbn7kztUV9ff9rX2zfffNM6xmhqD2PO/jvSW3+BZSjbxGGMMdH1yQAAAAytETWGBQAAjE0EFgAAYHsEFgAAYHsEFgAAYHsEFgAAYHsEFgAAYHsEFgAAYHsEFgAAYHsEFgAAYHsEFgAAYHsEFgAAYHsEFgAAYHv/H/coIv0Y2GdPAAAAAElFTkSuQmCC",
+      "text/plain": [
+       "<Figure size 640x480 with 1 Axes>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "import matplotlib.pyplot as plt\n",
+    "# print(df_9.to_numpy())\n",
+    "plt.imshow(df_9.astype(float).to_numpy(), cmap='hot', interpolation='nearest')\n",
+    "# plt.show()\n",
+    "plt.savefig('840-9.jpg')"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "ITUR_venv",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
