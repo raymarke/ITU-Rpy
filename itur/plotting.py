@@ -126,7 +126,7 @@ def plot_in_map(data, lat=None, lon=None, lat_min=None, lat_max=None,
     im = ax.contourf(lon, lat, data, 100, transform=ccrs.PlateCarree(),
                      **kwargs)
 
-    cbar = fig.colorbar(im, orientation='horizontal', fraction=0.046, pad=0.04)
+    cbar = fig.colorbar(im, ax=axes.ravel().tolist(), orientation='horizontal', fraction=0.046, pad=0.04)
     cbar.set_label(cbar_text)
     fig.show()
     return ax
