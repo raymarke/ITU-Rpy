@@ -16,7 +16,7 @@ from itur.utils import (dataset_dir, prepare_input_array, prepare_output_array,
 
 def __fcn_columnar_content_reduced_liquid__(Lred, lat, lon, p):
     available_p = np.array(
-        [0.1, 0.2, 0.3, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 30.0, 50.0,
+        [0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.3, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 30.0, 50.0,
          60.0, 70.0, 80.0, 90.0, 95.0, 99.0])
 
     if p in available_p:
@@ -50,7 +50,8 @@ class __ITU840__():
     * P.840-5 (02/12) (Superseded)
     * P.840-6 (09/13) (Superseded)
     * P.840-7 (12/17) (Superseded)
-    * P.840-8 (08/19) (Current version)
+    * P.840-8 (08/19) (Superseded)
+    * P.840-9 (08/23) (Current version)
 
     Non-available versions include:
     * P.840-1 (08/94) (Superseded) - Tentative similar to P.840-4
@@ -62,7 +63,9 @@ class __ITU840__():
     # ITU-R P.840 recommendation.
 
     def __init__(self, version=8):
-        if version == 8:
+        if version == 9:
+            self.instance = _ITU840_9_()
+        elif version == 8:
             self.instance = _ITU840_8_()
         elif version == 7:
             self.instance = _ITU840_7_()
@@ -105,8 +108,78 @@ class __ITU840__():
         # Abstract method to compute the lognormal approximation coefficients
         return self.instance.lognormal_approximation_coefficient(lat, lon)
 
+class _ITU840_9_():
 
-class _ITU840_8_():
+    def __init__(self):
+        self.__version__ = 9
+        self.year = 2023
+        self.month = 8
+        self.link = 'https://www.itu.int/rec/R-REC-P.840-8-201908-I/en'
+
+        self._Lred = {}
+        self._M = None
+        self._sigma = None
+        self._Pclw = None
+
+    # Note: The dataset used in recommendation 840-8 is the same as the
+    # dataset use in recommendation 840-7. (The zip files included in
+    # both recommendations are identical)
+
+    def Lred(self, lat, lon, p):
+        if not self._Lred:
+            ps = [0.1, 0.01, 0.2, 0.3, 0.03, 0.5, 0.05, 1, 2, 3, 5, 10, 20, 30,
+                  50, 60, 70, 80, 90, 95, 99]
+            d_dir = os.path.join(dataset_dir, '840/v8_lred_%s.npz')
+            for p_load in ps:
+                self._Lred[float(p_load)] = load_data_interpolator(
+                    '840/v8_lat.npz', '840/v8_lon.npz',
+                    d_dir % (str(p_load).replace('.', '')),
+                    bilinear_2D_interpolator, flip_ud=False)
+
+        return self._Lred[float(p)](
+            np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape)
+
+    def M(self, lat, lon):
+        if not self._M:
+            self._M = load_data_interpolator(
+                '840/v8_lat.npz', '840/v8_lon.npz',
+                '840/v8_m.npz', bilinear_2D_interpolator, flip_ud=False)
+
+        return self._M(
+            np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape)
+
+    def sigma(self, lat, lon):
+        if not self._sigma:
+            self._sigma = load_data_interpolator(
+                '840/v8_lat.npz', '840/v8_lon.npz',
+                '840/v8_sigma.npz', bilinear_2D_interpolator, flip_ud=False)
+
+        return self._sigma(
+            np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape)
+
+    def Pclw(self, lat, lon):
+        if not self._Pclw:
+            self._Pclw = load_data_interpolator(
+                '840/v8_lat.npz', '840/v8_lon.npz',
+                '840/v8_pclw.npz', bilinear_2D_interpolator, flip_ud=False)
+
+        return self._Pclw(
+            np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape)
+
+    @staticmethod
+    def specific_attenuation_coefficients(f, T):
+        """
+        """
+        return _ITU840_6_.specific_attenuation_coefficients(f, T)
+
+    def lognormal_approximation_coefficient(self, lat, lon):
+        m = self.M(lat, lon)
+        sigma = self.sigma(lat, lon)
+        Pclw = self.Pclw(lat, lon)
+
+        return m, sigma, Pclw
+
+class _ITU840_8_():##fix this later (monkeyed with it instead of creating new class)
 
     def __init__(self):
         self.__version__ = 8
