@@ -876,6 +876,7 @@ class ITUR840_8TestCase(ITU_TestCase):
         df = self.read_csv(
             path.join(test_data, path_file), columns=["lat", "lon", "p", "Lred"]
         )
+        print(df.head())
         # test_cases = [
         #         (0.00, 0, 0.015, 0.82359246),
         #         (0.00, 0, 1.5, 0.22133684),

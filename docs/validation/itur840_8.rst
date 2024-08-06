@@ -38,7 +38,7 @@ first row of the results in the table:
     itur_val = itur.models.itu840.columnar_content_reduced_liquid(lat=lat, lon=lon, p=p)
 
     # Compute error with respect to value in ITU example file
-    ITU_example_val = nan  # (kg/m2)
+    ITU_example_val = 0.82359246  # (kg/m2)
     error = ITU_example_val - itur_val.value
     error_rel = error / ITU_example_val * 100  # (%)
 
