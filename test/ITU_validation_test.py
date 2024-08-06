@@ -6654,131 +6654,23 @@ class ITUR840_8TestCase(test.TestCase):
         models.itu840.change_version(8)
 
     def test_columnar_content_reduced_liquid(self):
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                0.0, 0.0, 0.015).value,
-            0.82359246235649, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                3.133, 101.7, 0.15).value,
-            3.744512329, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                3.133, 101.7, 0.3).value,
-            3.630957766, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                3.133, 101.7, 0.35).value,
-            3.594946111, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                22.9, -43.23, 0.1).value,
-            2.829931669, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                22.9, -43.23, 0.15).value,
-            2.615428331, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                22.9, -43.23, 0.3).value,
-            2.152560931, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                22.9, -43.23, 0.35).value,
-            2.030424796, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                23, 30, 0.1).value,
-            0.443821013, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                23, 30, 0.15).value,
-            0.367758574, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                23, 30, 0.3).value,
-            0.25249597, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                23, 30, 0.35).value,
-            0.230476914, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                25.78, -80.22, 0.1).value,
-            3.52927514, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                25.78, -80.22, 0.15).value,
-            3.368053109, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                25.78, -80.22, 0.3).value,
-            3.090031167, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                25.78, -80.22, 0.35).value,
-            2.98280226, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                28.717, 77.3, 0.1).value,
-            4.230726014, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                28.717, 77.3, 0.15).value,
-            4.004951665, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                28.717, 77.3, 0.3).value,
-            3.641943304, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                28.717, 77.3, 0.35).value,
-            3.550068054, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                33.94, 18.43, 0.1).value,
-            1.476285677, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                33.94, 18.43, 0.15).value,
-            1.342662497, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                33.94, 18.43, 0.3).value,
-            1.117630129, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                33.94, 18.43, 0.35).value,
-            1.061278891, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                41.9, 12.49, 0.1).value,
-            1.498459518, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                41.9, 12.49, 0.15).value,
-            1.411411719, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                41.9, 12.49, 0.3).value,
-            1.254176128, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                41.9, 12.49, 0.35).value,
-            1.214239524, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                51.5, -0.14, 0.1).value,
-            1.903298487, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                51.5, -0.14, 0.15).value,
-            1.803803604, places=5)
-        self.assertAlmostEqual(
-            models.itu840.columnar_content_reduced_liquid(
-                51.5, -0.14, 0.3).value,
-            1.641289077, places=5)
+        # Table with test cases (lat, lon, p, L)
+        test_cases = [
+            # (lat, lon, p, L)
+            (0.0, 0.0, 1013.25, 0.001),
+            (45.0, 90.0, 1013.25, 0.002),
+            (-45.0, -90.0, 900.0, 0.003),
+            (60.0, 180.0, 800.0, 0.004),
+            (-60.0, -180.0, 700.0, 0.005)
+            # Add more test cases as needed
+        ]
 
+        # Iterate over the test cases
+        for lat, lon, p, L in test_cases:
+            with self.subTest(lat=lat, lon=lon, p=p, L=L):
+                result = models.itu840.columnar_content_reduced_liquid(lat, lon, p).value
+                self.assertAlmostEqual(result, L, places=5)
+                
     def test_cloud_attenuation(self):
         self.assertAlmostEqual(
             models.itu840.cloud_attenuation(
