@@ -871,21 +871,28 @@ class ITUR840_8TestCase(ITU_TestCase):
         # Set the version to the
         models.itu840.change_version(8)
 
-        path_file = "840/ITURP840-8_columnar_content_reduced_liquid.csv"
-        # Read the test data
-        df = self.read_csv(
-            path.join(test_data, path_file), columns=["lat", "lon", "p", "Lred"]
-        )
+        # path_file = "840/ITURP840-8_columnar_content_reduced_liquid.csv"
+        # # Read the test data
+        # df = self.read_csv(
+        #     path.join(test_data, path_file), columns=["lat", "lon", "p", "Lred"]
+        # )
 
         # Run test and generate the report
         self.__run__(
             "test_columnar_content_reduced_liquid",
             test_fcn="models.itu840.columnar_content_reduced_liquid",
-            df=df,
             attributes=["lat", "lon", "p"],
             result_value="Lred",
             n_places=5,
         )
+        # self.__run__(
+        #     "test_columnar_content_reduced_liquid",
+        #     test_fcn="models.itu840.columnar_content_reduced_liquid",
+        #     df=df,
+        #     attributes=["lat", "lon", "p"],
+        #     result_value="Lred",
+        #     n_places=5,
+        # )
 
     def test_cloud_attenuation(self):
         # Set the version to the
