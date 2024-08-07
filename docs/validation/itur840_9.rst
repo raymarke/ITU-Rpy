@@ -77,7 +77,7 @@ first row of the results in the table:
     itur_val = itur.models.itu840.cloud_attenuation(lat=lat, lon=lon, f=f, el=el, p=p)
 
     # Compute error with respect to value in ITU example file
-    ITU_example_val = 0.09905224  # (dB)
+    ITU_example_val = 0.099052241  # (dB)
     error = ITU_example_val - itur_val.value
     error_rel = error / ITU_example_val * 100  # (%)
 
