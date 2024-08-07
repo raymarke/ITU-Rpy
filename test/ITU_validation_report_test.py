@@ -103,16 +103,16 @@ def create_ITU_suite():
     suite.add_test(ITUR453_14TestCase("test_wet_term_radio_refractivity"))
 
     # ITU-R P.618
-    # suite.add_test(ITUR618_13TestCase("test_rain_attenuation"))
-    # suite.add_test(ITUR618_13TestCase("test_rain_probability"))
-    # suite.add_test(ITUR618_13TestCase("test_scintillation_attenuation"))
-    # suite.add_test(ITUR618_13TestCase("test_total_attenuation"))
-    # suite.add_test(ITUR618_13TestCase("test_cross_polarization_discrimination"))
-    suite.add_test(ITUR618_14TestCase("test_rain_attenuation"))
-    suite.add_test(ITUR618_14TestCase("test_rain_probability"))
-    suite.add_test(ITUR618_14TestCase("test_scintillation_attenuation"))
-    suite.add_test(ITUR618_14TestCase("test_total_attenuation"))
-    suite.add_test(ITUR618_14TestCase("test_cross_polarization_discrimination"))
+    suite.add_test(ITUR618_13TestCase("test_rain_attenuation"))
+    suite.add_test(ITUR618_13TestCase("test_rain_probability"))
+    suite.add_test(ITUR618_13TestCase("test_scintillation_attenuation"))
+    suite.add_test(ITUR618_13TestCase("test_total_attenuation"))
+    suite.add_test(ITUR618_13TestCase("test_cross_polarization_discrimination"))
+    # suite.add_test(ITUR618_14TestCase("test_rain_attenuation"))
+    # suite.add_test(ITUR618_14TestCase("test_rain_probability"))
+    # suite.add_test(ITUR618_14TestCase("test_scintillation_attenuation"))
+    # suite.add_test(ITUR618_14TestCase("test_total_attenuation"))
+    # suite.add_test(ITUR618_14TestCase("test_cross_polarization_discrimination"))
 
     # ITU-R P.676
     suite.add_test(ITUR676_12TestCase("test_gamma0"))
