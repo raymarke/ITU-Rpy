@@ -134,7 +134,7 @@ class _ITU840_9_():
                 self._Lred[float(p_load)] = load_data_interpolator(
                     '840/v8_lat.npz', '840/v8_lon.npz',
                     d_dir % (str(p_load).replace('.', '')),
-                    bilinear_2D_interpolator, flip_ud=False)
+                    bilinear_2D_interpolator, flip_ud=True)
 
         return self._Lred[float(p)](
             np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape)
@@ -143,7 +143,7 @@ class _ITU840_9_():
         if not self._M:
             self._M = load_data_interpolator(
                 '840/v8_lat.npz', '840/v8_lon.npz',
-                '840/v8_m.npz', bilinear_2D_interpolator, flip_ud=False)
+                '840/v8_m.npz', bilinear_2D_interpolator, flip_ud=True)
 
         return self._M(
             np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape)
@@ -152,7 +152,7 @@ class _ITU840_9_():
         if not self._sigma:
             self._sigma = load_data_interpolator(
                 '840/v8_lat.npz', '840/v8_lon.npz',
-                '840/v8_sigma.npz', bilinear_2D_interpolator, flip_ud=False)
+                '840/v8_sigma.npz', bilinear_2D_interpolator, flip_ud=True)
 
         return self._sigma(
             np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape)
@@ -161,7 +161,7 @@ class _ITU840_9_():
         if not self._Pclw:
             self._Pclw = load_data_interpolator(
                 '840/v8_lat.npz', '840/v8_lon.npz',
-                '840/v8_pclw.npz', bilinear_2D_interpolator, flip_ud=False)
+                '840/v8_pclw.npz', bilinear_2D_interpolator, flip_ud=True)
 
         return self._Pclw(
             np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape)
