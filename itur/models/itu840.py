@@ -91,10 +91,10 @@ class __ITU840__():
 
     def columnar_content_reduced_liquid(self, lat, lon, p):
         # Abstract method to compute the columnar content of reduced liquid
-        fcn = np.vectorize(__fcn_columnar_content_reduced_liquid__,
-                           otypes=[np.ndarray])
         # fcn = np.vectorize(__fcn_columnar_content_reduced_liquid__,
-        #                    excluded=[0, 1, 2], otypes=[np.ndarray])
+        #                    otypes=[np.ndarray])
+        fcn = np.vectorize(__fcn_columnar_content_reduced_liquid__,
+                           excluded=[0, 1, 2], otypes=[np.ndarray])
         return np.array(fcn(self.instance.Lred, lat, lon, p).tolist())
 
     def cloud_attenuation(self, lat, lon, el, f, p, Lred=None):
