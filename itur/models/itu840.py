@@ -128,7 +128,7 @@ class _ITU840_9_():
     def Lred(self, lat, lon, p):
         if not self._Lred:
             ps = [0.1, 0.01, 0.2, 0.02, 0.3, 0.03, 0.5, 0.05, 1, 2, 3, 5, 10, 20, 30,
-                  50, 60, 70, 80, 90, 95, 99, 100.0]
+                  50, 60, 70, 80, 90, 95, 99, 100]
             d_dir = os.path.join(dataset_dir, '840/v8_lred_%s.npz')
             for p_load in ps:
                 self._Lred[float(p_load)] = load_data_interpolator(
@@ -199,7 +199,7 @@ class _ITU840_8_():##fix this later (monkeyed with it instead of creating new cl
     def Lred(self, lat, lon, p):
         if not self._Lred:
             ps = [0.1, 0.01, 0.2, 0.02, 0.3, 0.03, 0.5, 0.05, 1, 2, 3, 5, 10, 20, 30,
-                  50, 60, 70, 80, 90, 95, 99, 100.0]
+                  50, 60, 70, 80, 90, 95, 99, 100]
             d_dir = os.path.join(dataset_dir, '840/v8_lred_%s.npz')
             for p_load in ps:
                 self._Lred[float(p_load)] = load_data_interpolator(
