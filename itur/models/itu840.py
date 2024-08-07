@@ -15,10 +15,12 @@ from itur.utils import (dataset_dir, prepare_input_array, prepare_output_array,
 
 
 def __fcn_columnar_content_reduced_liquid__(Lred, lat, lon, p):
+    # available_p = np.array(
+    #     [0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.3, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 30.0, 50.0,
+    #      60.0, 70.0, 80.0, 90.0, 95.0, 99.0, 100.0])
     available_p = np.array(
         [0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.3, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 30.0, 50.0,
          60.0, 70.0, 80.0, 90.0, 95.0, 99.0, 100.0])
-
     if p in available_p:
         p_below = p_above = p
         pExact = True
@@ -129,7 +131,9 @@ class _ITU840_9_():
 
     def Lred(self, lat, lon, p):
         if not self._Lred:
-            ps = [0.01, 0.02, 0.03, 0.05, 0.1,  0.2,  0.3,  0.5,  1, 2, 3, 5, 10, 20, 30,
+            # ps = [0.01, 0.02, 0.03, 0.05, 0.1,  0.2,  0.3,  0.5,  1, 2, 3, 5, 10, 20, 30,
+            #       50, 60, 70, 80, 90, 95, 99, 100]
+            ps = [0.1, 0.01, 0.2, 0.02, 0.3, 0.03, 0.5, 0.05, 1, 2, 3, 5, 10, 20, 30,
                   50, 60, 70, 80, 90, 95, 99, 100]
             d_dir = os.path.join(dataset_dir, '840/v8_lred_%s.npz')
             for p_load in ps:
@@ -690,6 +694,8 @@ def columnar_content_reduced_liquid(lat, lon, p):
     type_output = get_input_type(lat)
     lat = prepare_input_array(lat)
     lon = prepare_input_array(lon)
+    print('before mod, lat used: {}, lon used: {}'.format(lat,lon))
+
     lon = np.mod(lon, 360)
     val = __model.columnar_content_reduced_liquid(lat, lon, p)
     print('lat used: {}, lon used: {}'.format(lat,lon))
