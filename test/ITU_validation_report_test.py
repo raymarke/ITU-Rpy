@@ -976,19 +976,19 @@ class ITUR839_4TestCase(ITU_TestCase):
 
 class ITUR840_8TestCase(ITU_TestCase):
 
-    itu_name = "ITU-R P.840-8"
+    itu_name = "ITU-R P.840-9"
     itu_description = "Attenuation due to clouds and fog"
 
     def test_columnar_content_reduced_liquid(self):
         # Set the version to the
-        models.itu840.change_version(8)
+        models.itu840.change_version(9)
 
         path_file = "840/ITURP840-9_columnar_content_reduced_liquid.csv"
         # Read the test data
         df = self.read_csv(
             path.join(test_data, path_file), columns=["lat", "lon", "p", "Lred"]
         )
-        print(df.head())
+        # print(df.head())
         # test_cases = [
         #         (0.00, 0, 0.015, 0.82359246),
         #         (0.00, 0, 1.5, 0.22133684),
