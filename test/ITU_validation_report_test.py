@@ -138,8 +138,8 @@ def create_ITU_suite():
     suite.add_test(ITUR839_4TestCase("test_rain_height"))
 
     # ITU-R P.840
-    suite.add_test(ITUR840_8TestCase("test_columnar_content_reduced_liquid"))
-    suite.add_test(ITUR840_8TestCase("test_cloud_attenuation"))
+    suite.add_test(ITUR840_9TestCase("test_columnar_content_reduced_liquid"))
+    suite.add_test(ITUR840_9TestCase("test_cloud_attenuation"))
 
     # ITU-R P.1510
     suite.add_test(ITUR1510_1TestCase("test_surface_mean_temperature"))
@@ -974,7 +974,7 @@ class ITUR839_4TestCase(ITU_TestCase):
         )
 
 
-class ITUR840_8TestCase(ITU_TestCase):
+class ITUR840_9TestCase(ITU_TestCase):
 
     itu_name = "ITU-R P.840-9"
     itu_description = "Attenuation due to clouds and fog"
@@ -1042,7 +1042,7 @@ class ITUR840_8TestCase(ITU_TestCase):
 
     def test_cloud_attenuation(self):
         # Set the version to the
-        models.itu840.change_version(8)
+        models.itu840.change_version(9)
 
         path_file = "840/ITURP840-9_cloud_attenuation.csv"
         # Read the test data
