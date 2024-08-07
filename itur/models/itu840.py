@@ -29,7 +29,7 @@ def __fcn_columnar_content_reduced_liquid__(Lred, lat, lon, p):
 
         p_below = available_p[idx]
         p_above = available_p[idx + 1]
-
+        print('P is {}, P_below is {}, P_above is {}'.format(p,p_below, p_above))
     # Compute the values of Lred_a
     Lred_a = Lred(lat, lon, p_above)
     if not pExact:
@@ -689,6 +689,7 @@ def columnar_content_reduced_liquid(lat, lon, p):
     lat = prepare_input_array(lat)
     lon = prepare_input_array(lon)
     lon = np.mod(lon, 360)
+    print('lat used: {}, lon used: {}'.format(lat,lon))
     val = __model.columnar_content_reduced_liquid(lat, lon, p)
     return prepare_output_array(val, type_output) * u.kg / u.m**2
 
