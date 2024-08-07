@@ -34,8 +34,8 @@ def __fcn_columnar_content_reduced_liquid__(Lred, lat, lon, p):
     Lred_a = Lred(lat, lon, p_above)
     if not pExact:
         Lred_b = Lred(lat, lon, p_below)
-        Lred = Lred_b + (Lred_a - Lred_b) * (np.log(p) - np.log(p_below)) \
-            / (np.log(p_above) - np.log(p_below))
+        Lred = Lred_b + (Lred_a - Lred_b) * (np.log10(p) - np.log10(p_below)) \
+            / (np.log10(p_above) - np.log10(p_below))
         return Lred
     else:
         return Lred_a
