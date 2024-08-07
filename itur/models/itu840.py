@@ -29,7 +29,7 @@ def __fcn_columnar_content_reduced_liquid__(Lred, lat, lon, p):
 
         p_below = available_p[idx]
         p_above = available_p[idx + 1]
-        print('P is {}, P_below is {}, P_above is {}'.format(p,p_below, p_above))
+    print('P is {}, P_below is {}, P_above is {}'.format(p,p_below, p_above))
     # Compute the values of Lred_a
     Lred_a = Lred(lat, lon, p_above)
     if not pExact:
@@ -127,8 +127,10 @@ class _ITU840_9_():
 
     def Lred(self, lat, lon, p):
         if not self._Lred:
-            ps = [0.1, 0.01, 0.2, 0.02, 0.3, 0.03, 0.5, 0.05, 1, 2, 3, 5, 10, 20, 30,
-                  50, 60, 70, 80, 90, 95, 99, 100]
+            ps = [0.01, 0.02, 0.03, 0.05, 0.1, 0.2, 0.3, 0.5, 1.0, 2.0, 3.0, 5.0, 10.0, 20.0, 30.0, 50.0,
+                  60.0, 70.0, 80.0, 90.0, 95.0, 99.0, 100.0]
+            # ps = [0.1, 0.01, 0.2, 0.02, 0.3, 0.03, 0.5, 0.05, 1, 2, 3, 5, 10, 20, 30,
+            #       50, 60, 70, 80, 90, 95, 99, 100]
             d_dir = os.path.join(dataset_dir, '840/v8_lred_%s.npz')
             for p_load in ps:
                 self._Lred[float(p_load)] = load_data_interpolator(

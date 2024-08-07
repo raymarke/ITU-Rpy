@@ -138,10 +138,10 @@ def create_ITU_suite():
     suite.add_test(ITUR839_4TestCase("test_rain_height"))
 
     # ITU-R P.840
-    suite.add_test(ITUR840_8TestCase("test_columnar_content_reduced_liquid"))
-    suite.add_test(ITUR840_8TestCase("test_cloud_attenuation"))
-    # suite.add_test(ITUR840_9TestCase("test_columnar_content_reduced_liquid"))
-    # suite.add_test(ITUR840_9TestCase("test_cloud_attenuation"))
+    # suite.add_test(ITUR840_8TestCase("test_columnar_content_reduced_liquid"))
+    # suite.add_test(ITUR840_8TestCase("test_cloud_attenuation"))
+    suite.add_test(ITUR840_9TestCase("test_columnar_content_reduced_liquid"))
+    suite.add_test(ITUR840_9TestCase("test_cloud_attenuation"))
 
     # ITU-R P.1510
     suite.add_test(ITUR1510_1TestCase("test_surface_mean_temperature"))

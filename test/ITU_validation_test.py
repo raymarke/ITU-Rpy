@@ -33,7 +33,7 @@ def suite():
     models.itu837.change_version(7)
     models.itu838.change_version(3)
     models.itu839.change_version(4)
-    models.itu840.change_version(8)#changed version from 7 to 8
+    models.itu840.change_version(7)#changed version from 7 to 8
     models.itu1510.change_version(1)
     models.itu1511.change_version(1)
 
@@ -85,10 +85,10 @@ def suite():
     # ITU-R P.840 tests (Clouds attenuation)
 #    suite.addTest(ITUR840_4TestCase('test_columnar_content_reduced_liquid'))
 #    suite.addTest(ITUR840_4TestCase('test_cloud_attenuation'))
-    # suite.addTest(ITUR840_7TestCase('test_columnar_content_reduced_liquid'))
-    # suite.addTest(ITUR840_7TestCase('test_cloud_attenuation'))
-    suite.addTest(ITUR840_8TestCase('test_columnar_content_reduced_liquid'))
-    suite.addTest(ITUR840_8TestCase('test_cloud_attenuation'))
+    suite.addTest(ITUR840_7TestCase('test_columnar_content_reduced_liquid'))
+    suite.addTest(ITUR840_7TestCase('test_cloud_attenuation'))
+    # suite.addTest(ITUR840_8TestCase('test_columnar_content_reduced_liquid'))
+    # suite.addTest(ITUR840_8TestCase('test_cloud_attenuation'))
     # ITU-R P.1511 tests (Topographic altitude)
     suite.addTest(ITUR1511_1TestCase('test_topographic_altitude'))
     suite.addTest(ITUR1511_2TestCase('test_topographic_altitude'))
