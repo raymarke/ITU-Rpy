@@ -6755,7 +6755,7 @@ class ITUR840_8TestCase(test.TestCase):
         # lat, lon, p, f, el, eps_prime, eps_doubleprime, eta, KL(f), L(p), AcdB
         for Lat, Lon, p, f, El_Angle, eps_prime, eps_doubleprime, eta, KL, L, AcdB in test_cases:
             with self.subTest(lat=Lat, lon=Lon, el = El_Angle, f=f, p=p):
-                result = models.itu840.cloud_attenuation(lat, lon, p).value
+                result = models.itu840.cloud_attenuation(Lat, Lon, p).value
                 self.assertAlmostEqual(result, AcdB, places=5)
 
 # class ITUR840_4TestCase(test.TestCase):
