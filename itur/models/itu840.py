@@ -95,8 +95,8 @@ class __ITU840__():
         fcn = np.vectorize(__fcn_columnar_content_reduced_liquid__,
                            excluded=[0, 1, 2], otypes=[np.ndarray])
         #excludes self, lat, lon (treating them as constants)
-        print('function')
-        print(fcn)
+        # print('function')
+        # print(fcn)
         return np.array(fcn(self.instance.Lred, lat, lon, p).tolist())
 
     def cloud_attenuation(self, lat, lon, el, f, p, Lred=None):
@@ -141,8 +141,8 @@ class _ITU840_9_():
                     '840/v8_lat.npz', '840/v8_lon.npz',
                     d_dir % (str(p_load).replace('.', '')),
                     bilinear_2D_interpolator, flip_ud=False)
-        print('interpolator step')
-        print(self._Lred[float(p)](np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape))
+        # print('interpolator step')
+        # print(self._Lred[float(p)](np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape))
         return self._Lred[float(p)](np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape)
 
     def M(self, lat, lon):
