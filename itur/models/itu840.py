@@ -140,7 +140,7 @@ class _ITU840_9_():
                 self._Lred[float(p_load)] = load_data_interpolator(
                     '840/v8_lat.npz', '840/v8_lon.npz',
                     d_dir % (str(p_load).replace('.', '')),
-                    bilinear_2D_interpolator, flip_ud=True)
+                    bilinear_2D_interpolator, flip_ud=False)
         # print('interpolator step')
         # print(self._Lred[float(p)](np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape))
         return self._Lred[float(p)](np.array([lat.ravel(), lon.ravel()]).T).reshape(lat.shape)
