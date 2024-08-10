@@ -990,7 +990,8 @@ class ITUR840_9TestCase(ITU_TestCase):
         df = self.read_csv(
             path.join(test_data, path_file), columns=["lat", "lon", "p", "Lred"]
         )
-
+        print('validation file ')
+        print(df.head())
         # Run test and generate the report
 
         self.__run__(
